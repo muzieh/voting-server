@@ -42,11 +42,33 @@ describe('application logic', () => {
 
 		it('puts winner of current vote back to entries', () => {
 
+			const state = fromJS({
+				vote: {
+						pair: ['Trainspotting', '28 days later'],
+						tally: {
+							'Trainspotting': 4,
+							'28 days later': 3
+						}
+				},
+				entries: ['Sunshine', 'Blade Runner']
+			});
+			const nextState = next(state);
+			expect(nextState).to.equal(Map({
+				vote: Map({
+					pair: List.of('Sunshine', 'Blade Runner')
+				}),
+				entries: List.of('Trainspotting')
+			}));
 		});
 
 		it('puts both movies to entries in case of tie vote', () => {
 
 		});
+
+		it('mark the winer if only one movie left', () => {
+
+		});
+
 
 	});
 
