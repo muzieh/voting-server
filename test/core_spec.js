@@ -39,6 +39,15 @@ describe('application logic', () => {
 				entries: List.of('Sunshine')
 			}));
 		});
+
+		it('puts winner of current vote back to entries', () => {
+
+		});
+
+		it('puts both movies to entries in case of tie vote', () => {
+
+		});
+
 	});
 
 	describe('vote', () => {
