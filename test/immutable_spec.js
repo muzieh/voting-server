@@ -33,6 +33,12 @@ describe('immutability', () => {
 			expect(state).to.equal(List.of('Trainspotting', '28 days later'));
 
 		});	
+
+		it('can check length', () => {
+
+				let list = List.of('a', 'b', 'b');
+				expect(list.getLength()).to.equal(3);
+		});
  	});
 
 	describe('a Tree', () => {

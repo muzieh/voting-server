@@ -63,12 +63,55 @@ describe('application logic', () => {
 
 		it('puts both movies to entries in case of tie vote', () => {
 
+			const state = fromJS({
+				vote: {
+						pair: ['Trainspotting', '28 days later'],
+						tally: {
+							'Trainspotting': 4,
+							'28 days later': 4
+						}
+				},
+				entries: ['Sunshine', 'Blade Runner']
+			});
+			const nextState = next(state);
+			expect(nextState).to.equal(Map({
+				vote: Map({
+					pair: List.of('Sunshine', 'Blade Runner')
+				}),
+				entries: List.of('Trainspotting', '28 days later')
+			}));
 		});
 
-		it('mark the winer if only one movie left', () => {
+		it('mark the winer if only one movie left after voting', () => {
 
+			const state = fromJS({
+				vote: {
+						pair: ['Trainspotting', '28 days later'],
+						tally: {
+							'Trainspotting': 4,
+							'28 days later': 2
+						}
+				},
+				entries: []
+			});
+			const nextState = next(state);
+			expect(nextState).to.equal(Map({
+				winner: 'Blade Runner',
+				entries: List()
+			}));
 		});
 
+		it('mark the winer if only one movie in entries', () => {
+
+			const state = fromJS({
+				entries: ['Trainspotting']
+			});
+			const nextState = next(state);
+			expect(nextState).to.equal(Map({
+				winner: 'Trainspotting',
+				entries: List()
+			}));
+		});
 
 	});
 
