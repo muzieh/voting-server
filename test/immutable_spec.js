@@ -37,7 +37,7 @@ describe('immutability', () => {
 		it('can check length', () => {
 
 				let list = List.of('a', 'b', 'b');
-				expect(list.getLength()).to.equal(3);
+				expect(list.count()).to.equal(3);
 		});
  	});
 

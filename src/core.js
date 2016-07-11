@@ -5,12 +5,18 @@ export function setEntries(state, entries) {
 }
 
 export function next(state) {
-	const entries = state.get('entries');
 	const vote = state.get('vote');
-
+	const entries = state.get('entries').concat(getWinner(vote));
+	const numOfEntries = entries.count();
+	if(numOfEntries == 1) {
+		return Map({
+			winner: entries.take(1).first(),
+			entries: List()
+		});
+	}
 	return state.merge({
 		vote: Map({pair: entries.take(2)}),
-		entries: entries.skip(2).concat(getWinner(vote))
+		entries: entries.skip(2)
 	});
 }
 

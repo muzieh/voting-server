@@ -82,6 +82,27 @@ describe('application logic', () => {
 			}));
 		});
 
+		it('puts both pair movies back to pair if entries are empty and tie vote', () => {
+
+			const state = fromJS({
+				vote: {
+						pair: ['Trainspotting', '28 days later'],
+						tally: {
+							'Trainspotting': 4,
+							'28 days later': 4
+						}
+				},
+				entries: []
+			});
+			const nextState = next(state);
+			expect(nextState).to.equal(Map({
+				vote: Map({
+					pair: List.of('Trainspotting', '28 days later')
+				}),
+				entries: List()
+			}));
+		});
+
 		it('mark the winer if only one movie left after voting', () => {
 
 			const state = fromJS({
@@ -96,7 +117,7 @@ describe('application logic', () => {
 			});
 			const nextState = next(state);
 			expect(nextState).to.equal(Map({
-				winner: 'Blade Runner',
+				winner: 'Trainspotting',
 				entries: List()
 			}));
 		});
