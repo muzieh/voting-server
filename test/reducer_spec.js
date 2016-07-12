@@ -13,6 +13,7 @@ describe('reducer', () => {
 		expect(nextState).to.equals(fromJS({entries: ['Trainspotting', '28 Days Later']}));
 	});
 
+
 	it('handles NEXT', () => {
 		const initialState = fromJS({entries:['Trainspotting', '28 Days Later']}) ;
 		const action = {type: 'NEXT'};
