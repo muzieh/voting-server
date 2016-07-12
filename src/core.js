@@ -7,12 +7,14 @@ export function setEntries(state, entries) {
 export function next(state) {
 	const vote = state.get('vote');
 	const entries = state.get('entries').concat(getWinner(vote));
-	const numOfEntries = entries.count();
-	if(numOfEntries == 1) {
+	if( entries.size === 1) {
+		return state.remove('vote').remove('entries').set('winner', entries.first());
+		/*
 		return Map({
-			winner: entries.take(1).first(),
+			winner: entries.first(),
 			entries: List()
 		});
+		*/
 	}
 	return state.merge({
 		vote: Map({pair: entries.take(2)}),

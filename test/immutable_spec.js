@@ -39,6 +39,16 @@ describe('immutability', () => {
 				let list = List.of('a', 'b', 'b');
 				expect(list.count()).to.equal(3);
 		});
+
+		it('can check length. size and count() are the same', () => {
+
+				const list = List.of('a', 'b', 'b');
+				let c = list.count();
+				let s = list.size; 
+				expect(c).to.equal(s);
+		});
+
+
  	});
 
 	describe('a Tree', () => {

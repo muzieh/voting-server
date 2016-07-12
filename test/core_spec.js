@@ -118,7 +118,6 @@ describe('application logic', () => {
 			const nextState = next(state);
 			expect(nextState).to.equal(Map({
 				winner: 'Trainspotting',
-				entries: List()
 			}));
 		});
 
@@ -130,7 +129,6 @@ describe('application logic', () => {
 			const nextState = next(state);
 			expect(nextState).to.equal(Map({
 				winner: 'Trainspotting',
-				entries: List()
 			}));
 		});
 
